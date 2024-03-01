@@ -12,7 +12,6 @@
 #pragma config FPLLMUL =    MUL_20
 #pragma config FPLLODIV =   DIV_1
 
-#define INTERVAL                262000
 #define BTNU                    PORTBbits.RB1
 #define BTNC                    PORTFbits.RF0
 #define BTND                    PORTAbits.RA15
@@ -40,7 +39,7 @@
 void initSpeaker();
 void initButtons();
 void initLCD();
-void delay(int speed);
+void delay();
 void writeLCD(char string[], int size);
 void clearLCD();
 void moveCursor(int pos);
@@ -108,7 +107,7 @@ void main(){
             size = 1;
         }
         handleMovement(&pos, &direction, menachem[current], size);
-        delay(INTERVAL);
+        delay();
     }
     
 }
@@ -218,8 +217,8 @@ void clearLCD(){
     ENABLE();
 }
 
-void delay(int speed){
-    for(int i = 0; i < speed; i++);
+void delay(){
+    for(int i = 0; i < 262000; i++);
 }
 
 void beep(){
